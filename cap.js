@@ -45,37 +45,62 @@
 //  })
 
 
-function division(a, b) {
-    return new Promise((resolve, reject) => {
-        if(b === 0) {
-           reject("Not divided by zero");
-         } else {
-             setTimeout(function(){
-                 resolve(a % b);
-             }, 5000);
-         }
-    })
+// function division(a, b) {
+//     return new Promise((resolve, reject) => {
+//         if(b === 0) {
+//            reject("Not divided by zero");
+//          } else {
+//              setTimeout(function(){
+//                  resolve(a % b);
+//              }, 5000);
+//          }
+//     })
+//  }
+ 
+//  // call 
+//  division(10, 3).then(data => {
+//     console.log("Result:", data);
+//     console.log("...");
+
+//     division(10, 4).then(data => {
+//         console.log("Result:", data);
+//         console.log("...");
+
+//         division(20, 7).then(data => {
+//             console.log("Result:", data);
+//             console.log("...");
+//         }).catch(err => {
+//         console.log("Error division",err)
+//         });
+//     }).catch(err => {
+//         console.log("Error division",err)
+//     });
+// }).catch(err => {
+//     console.log("Error division",err)
+// });
+ 
+
+
+// Define
+async function division(a, b) {
+    if(b === 0) {
+        throw new Error("Not divided by zero");
+    } else {
+        return a % b;
+    }
  }
- 
- // call 
- division(10, 3).then(data => {
-    console.log("Result:", data);
-    console.log("...");
 
-    division(10, 4).then(data => {
-        console.log("Result:", data);
-        console.log("...");
+ async function run() {
 
-        division(20, 7).then(data => {
-            console.log("Result:", data);
-            console.log("...");
-        }).catch(err => {
-        console.log("Error division",err)
-        });
-    }).catch(err => {
-        console.log("Error division",err)
-    });
-}).catch(err => {
-    console.log("Error division",err)
-});
- 
+    let result = await division(10, 3)
+    console.log("result one:", result)
+
+    result = await division(10, 4)
+    console.log("result two:", result)
+
+    result = await division(20, 7)
+    console.log("result three:", result)
+
+
+ }
+ run()

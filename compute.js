@@ -3,7 +3,7 @@
     callbackk function 
 */
 
-// define synchronous function
+define 
 function division(a, b, callback) {
    if(b === 0) {
     callback ("Not divided by zero", null);
